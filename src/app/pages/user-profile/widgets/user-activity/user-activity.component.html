@@ -1,0 +1,25 @@
+<app-card
+  [headerTitle]="'Recent Activity'"
+  [border]="true"
+  [padding]="false"
+  [cardBodyClass]="'dark-timeline'"
+>
+  <ul>
+    @for(activity of userRecentActivity; track activity; let i = $index) {
+    <li class="d-flex">
+      <div class="activity-dot-{{ getColor(i) }}"></div>
+      <div class="w-100 ms-3">
+        <p class="d-flex justify-content-between mb-2">
+          <span class="date-content light-background">{{ activity.date }}</span>
+          <span>{{ activity.time }}</span>
+        </p>
+        <h6>
+          {{ activity.title }}
+          <span class="dot-notification"></span>
+        </h6>
+        <span [innerHTML]="activity.description"></span>
+      </div>
+    </li>
+    }
+  </ul>
+</app-card>

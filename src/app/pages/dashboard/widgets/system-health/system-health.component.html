@@ -1,0 +1,37 @@
+<app-card
+        [headerTitle]="'System Health Overview'"
+        [padding]="false"
+        [cardClass]="'schedule-calender'"
+        [cardBodyClass]="'pt-0'"
+        [rightSideDetails]="true"
+>
+    <div class="tab-content" id="systemTabContent">
+        <div class="tab-pane fade show active" id="system-status" role="tabpanel">
+            <ul class="activity-update">
+                @for (metric of systemMetrics; track metric) {
+                    <li>
+                        <div class="d-flex align-items-center b-l-{{ metric.color_class }}">
+                            <div class="left-schedule">
+                                <span>{{ metric.title }}</span>
+                                <div class="common-f-start">
+                                    <div class="customers">
+                                        <ul>
+                                            <li class="d-inline-block">
+                                                <i class="icofont {{ metric.icon }}"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <span class="c-o-light schedule-name">{{ metric.description }}</span>
+                                </div>
+                            </div>
+                            <div class="right-schedule">
+                                <i class="icofont icofont-chart-line-alt text-success"></i>
+                                <span class="c-o-light">{{ metric.value }}</span>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</app-card>

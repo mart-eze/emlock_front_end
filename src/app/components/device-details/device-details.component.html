@@ -1,0 +1,59 @@
+@if(device) {
+<div class="progress-device-box">
+  <div
+    class="list-box {{
+      device.status == 'pending'
+        ? 'title-line-primary'
+        : device.status == 'in_progress'
+        ? 'title-line-warning'
+        : 'title-line-success'
+    }}"
+  >
+    <div class="header-top">
+      <span
+        class="badge badge-light-{{
+          device.status == 'pending'
+            ? 'primary'
+            : device.status == 'in_progress'
+            ? 'warning'
+            : 'success'
+        }}"
+      >
+        {{ device.status.replace("_", " ") | titlecase }}
+      </span>
+      <p class="mb-0 c-o-light">
+        <app-svg-icon
+          [icon]="'vector-calendar'"
+          [class]="'me-2'"
+        ></app-svg-icon>
+        {{ device.date }}
+      </p>
+    </div>
+    <div class="device-body">
+      <div class="common-f-start gap-3">
+        <img class="img-fluid" [src]="device.image" alt="dashboard" />
+        <div>
+          <h6>{{ device.customer_name }}</h6>
+          <span>{{ device.device_name }}</span>
+        </div>
+      </div>
+      <div class="common-space">
+        <p class="mb-0 c-o-light">Tasks</p>
+        <span>{{ device.progress }}%</span>
+      </div>
+      <div class="progress">
+        <div
+          class="progress-bar bg-{{
+            device.status == 'pending'
+              ? 'primary'
+              : device.status == 'in_progress'
+              ? 'warning'
+              : 'success'
+          }}"
+          [ngStyle]="{ width: device.progress + '%' }"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
+}
